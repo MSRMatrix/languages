@@ -94,8 +94,6 @@ function wrapAndPair<T, U>(a: T, b: U): [T, U] {
     return [a, b];
 }
 
-
-
 const pair1 = wrapAndPair("Mike", 25);
 // Typ: [string, number]
 

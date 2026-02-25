@@ -24,3 +24,11 @@ const r1: Response<number> ={
 }
 
 console.log(r1)
+
+
+const r3: Response<{ name: string; age: number }> = {
+  status: "success",
+  data: { name: "Mike", age: 25 },
+};
+
+console.log(r3)

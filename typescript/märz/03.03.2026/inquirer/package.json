@@ -1,0 +1,14 @@
+{
+  "name": "03.03.2026",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "inquirer": "^13.3.0"
+  }
+}

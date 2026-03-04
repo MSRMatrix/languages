@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "task": "einkaufen",
+    "done": false
+  },
+  {
+    "id": 2,
+    "task": "tanken",
+    "done": true
+  },
+  {
+    "id": 3,
+    "task": "Auto waschen",
+    "done": false
+  },
+  {
+    "id": 4,
+    "task": "Müll rausbringen",
+    "done": false
+  }
+]

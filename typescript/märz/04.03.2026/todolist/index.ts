@@ -27,8 +27,6 @@ function saveTodos(todos: Todo[]) {
 
 async function main() {
 
-
-
     while (true) {
 
     const step = await inquirer.prompt({

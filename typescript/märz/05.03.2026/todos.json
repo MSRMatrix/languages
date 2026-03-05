@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "task": "einkaufen",
+    "done": true
+  },
+  {
+    "id": 2,
+    "task": "Trinken",
+    "done": false
+  },
+  {
+    "id": 3,
+    "task": "Bananen kaufen",
+    "done": false
+  },
+  {
+    "id": 4,
+    "task": "Eis essen",
+    "done": false
+  },
+  {
+    "id": 5,
+    "task": "Kfc besuchen",
+    "done": false
+  }
+]

@@ -203,11 +203,15 @@ if(answers.choice === "Passwort auswählen"){
       type: "select",
       name: "choice",
       message: "Wähle ein Passwort zum löschen aus: ",
-      choices:  passwords.map((item) => ({
-  name: item.value,
-  value: item.id
-}))
+      choices: [
+  ...passwords.map(p => ({ name: p.value, value: p.id })),
+  { name: "Abbrechen", value: "cancel" }
+]
     });
+
+    if(list.choice === "cancel"){
+      break;
+    }
 
     const newPasswordList = passwords.filter((item) => item.id !== list.choice);
     savePasswords(newPasswordList)

@@ -1,0 +1,82 @@
+import { randomInt, randomUUID } from 'crypto';
+import { writeFileSync } from 'fs';
+import { load } from './load.ts';
+import type { Password } from "../types.ts";
+import { save } from './save.ts';
+import inquirer from 'inquirer';
+
+export async function creating(newPassword: Password) {
+  const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const lowercase = "abcdefghijklmnopqrstuvwxyz"; 
+  const numbers = "1234567890";
+  const symbols = `!@#$%^&*()-_=+[]{}|;:',.<>/?`;
+
+  const options = newPassword.options;
+
+  const answer = await inquirer.prompt({
+    type: "input",
+    name: "name",
+    message: "Wie soll dein Passwort heißen?",
+  });
+
+  // if(answer.name === "bestehendes Passwort")
+  // Muss User auffordern den Namen zu wiederholen
+
+
+  let charset = lowercase; 
+  if (options.uppercase) charset += uppercase;
+  if (options.includeNumbers) charset += numbers;
+  if (options.includeSymbols) charset += symbols;
+
+  let password = "";
+  for (let i = 0; i < options.length; i++) {
+    const index = randomInt(0, charset.length);
+    password += charset[index];
+  }
+
+  newPassword.value = password;
+  newPassword.id = randomUUID();
+  newPassword.name = answer.name
+
+
+   newPassword.strengh = evaluatePassword(password)
+
+  const passwords = load();
+
+  passwords.push(newPassword);
+
+  save(passwords);
+
+  console.log("Neues Passwort:", newPassword.value);
+}
+
+
+
+function evaluatePassword(password: string): string {
+  const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const numbers = "1234567890";
+  const symbols = `!@#$%^&*()-_=+[]{}|;:',.<>/?`;
+
+  let score = 0;
+
+  // ✅ Prüfen ob mindestens ein Zeichen vorkommt
+  const hasUppercase = [...password].some(char => uppercase.includes(char));
+  const hasNumber = [...password].some(char => numbers.includes(char));
+  const hasSymbol = [...password].some(char => symbols.includes(char));
+
+  if (hasUppercase) score++;
+  if (hasNumber) score++;
+  if (hasSymbol) score++;
+
+  // ✅ Länge bewerten
+  const length = password.length;
+
+  if (length >= 8) score++;
+  if (length >= 12) score++;
+  if (length >= 16) score++;
+
+  // ✅ Ergebnis
+  if (score <= 2) return "weak";
+  if (score <= 4) return "normal";
+  return "strong";
+}

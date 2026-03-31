@@ -1,0 +1,16 @@
+{
+  "name": "11.03.2026",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "clipboardy-ts": "^1.0.0",
+    "crypto": "^1.0.1",
+    "inquirer": "^13.3.0"
+  }
+}
